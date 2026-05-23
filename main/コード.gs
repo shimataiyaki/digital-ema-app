@@ -1,22 +1,22 @@
-// ★★★ ご自身のスプレッドシートIDに置き換えてください ★★★
-var SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE';
+// ★★★ スプレッドシートID ★★★
+var SPREADSHEET_ID = 'XXXXXXXXXXXXXXXXX';
 
-// ウェブアプリのエントリポイント（URLパラメータで出し分け）
+// ウェブアプリのエントリポイント（JSONP対応APIサーバー）
 function doGet(e) {
-  var page = e.parameter.page;
-  var htmlOutput;
+  var callback = e.parameter.callback || 'callback';
+  var type = e.parameter.type;
+  var data;
 
-  if (page === 'archive') {
-    htmlOutput = HtmlService.createHtmlOutputFromFile('archive')
-        .setTitle('奉納アーカイブ｜デジタル絵馬')
-        .addMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
+  if (type === 'notification') {
+    data = getRecentNicknames();
   } else {
-    htmlOutput = HtmlService.createHtmlOutputFromFile('index')
-        .setTitle('デジタル絵馬')
-        .addMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
+    data = getRandomWishes();
   }
 
-  return htmlOutput.setFaviconUrl('https://shimataiyaki.github.io/images/favicon.ico');
+  var output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JAVASCRIPT);
+  output.setContent(callback + '(' + JSON.stringify(data) + ');');
+  return output;
 }
 
 // タイムスタンプが今日かどうかを判定
@@ -94,27 +94,4 @@ function getRecentNicknames() {
   }
 
   return recentNicknames;
-}
-
-// 全件取得（アーカイブ画面用・全日程・時系列順）
-function getAllWishes() {
-  var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
-  var lastRow = sheet.getLastRow();
-  if (lastRow < 2) return [];
-
-  var range = sheet.getRange(2, 1, lastRow - 1, 3);
-  var values = range.getValues();
-
-  var wishes = [];
-  for (var i = 0; i < values.length; i++) {
-    var row = values[i];
-    if (row[1] && row[1].toString().trim() !== '') {
-      wishes.push({
-        timestamp: row[0],
-        wish: row[1].toString().trim(),
-        nickname: row[2] ? row[2].toString().trim() : '匿名'
-      });
-    }
-  }
-  return wishes;
 }
