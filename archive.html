@@ -181,7 +181,7 @@
     /* ===== 絵馬カード ===== */
     .ema-card {
       background-color: transparent;
-      background-image: url('https://shimataiyaki.github.io/images/ema-card.jpg');
+      background-image: url('/images/ema-card.jpg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: top center;
@@ -314,7 +314,7 @@
         <li><a href="./archive.html">アーカイブ</a></li>
         <hr>
         <li><a href="https://shimataiyaki.github.io/digital-omikuji" target="_blank" rel="noopener">デジタルおみくじ</a></li>
-        <li><a href="https://github.com/shimataiyaki/digital-ema-app" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/shimataiyaki/digital-ema" target="_blank" rel="noopener">GitHub</a></li>
       </div>
     </ul>
   </div>
@@ -364,8 +364,8 @@
   });
 
   // ===== データ取得と表示（JSONP）=====
-  
-  const API_URL = 'https://script.google.com/macros/s/AKfycbxdlsuwqo6uX8n_-zbYv-JFreS0w0w720FUxshtGNazav_4nxqUvAKTm-sEsK2NLw1ieQ/exec'; // ★★★ GAS API のデプロイURL ★★★
+  // ★ GAS API URL, not for reuse.
+  const API_URL = 'https://script.google.com/macros/s/AKfycbwi0NXAZ_doCj7I7KuU0hk4wO65m4XcuGXotM795E1sXNjs5yC_HwxbEG4bemgzfd1a'; 
 
   function formatDate(timestamp) {
     const d = new Date(timestamp);
