@@ -104,5 +104,6 @@ digital-emaは、来場者が入力した願い事を「デジタル絵馬」と
 
 ## ライセンス
 MIT License
+Documentation, articles, images, and website content are licensed under CC BY-NC 4.0 unless otherwise stated.
 
 © 2026 Shimataiyaki
