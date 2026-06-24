@@ -184,7 +184,7 @@
 
     .ema-card {
       background-color: transparent;
-      background-image: url('https://shimataiyaki.github.io/images/ema-card.jpg');
+      background-image: url('/images/ema-card.jpg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: top center;
@@ -298,7 +298,7 @@
         <li><a href="archive.html" target="_blank">アーカイブ</a></li>
         <hr>
         <li><a href="https://shimataiyaki.github.io/digital-omikuji" target="_blank" rel="noopener">デジタルおみくじ</a></li>
-        <li><a href="https://github.com/Shimataiyaki/digital-ema-app" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/Shimataiyaki/digital-ema" target="_blank" rel="noopener">GitHub</a></li>
       </div>
     </ul>
   </div>
@@ -337,7 +337,8 @@
   });
 
   // ===== API呼び出し設定 =====
-  const API_URL = 'https://script.google.com/macros/s/AKfycbxdlsuwqo6uX8n_-zbYv-JFreS0w0w720FUxshtGNazav_4nxqUvAKTm-sEsK2NLw1ieQ/exec'; // ★ GAS APIのデプロイURL
+  // ★ GAS API deploy URL, not for reuse.
+  const API_URL = 'https://script.google.com/macros/s/AKfycbxdlsuwqo6uX8n_-zbYv-JFreS0w0w720FUxshtGNazav_4nxqUvAKTm-sEsK2NLw1ieQ/exec';
   const NOTIFICATION_DURATION = 8000;
   let notificationTimer = null;
 
